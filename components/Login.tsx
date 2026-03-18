@@ -84,10 +84,6 @@ export default function Login({ onLogin }: LoginProps) {
             Sign In
           </button>
         </form>
-
-        <p className="mt-6 text-center text-sm text-gray-600">
-          This is a demo. Use any credentials to log in.
-        </p>
       </div>
     </div>
   );
