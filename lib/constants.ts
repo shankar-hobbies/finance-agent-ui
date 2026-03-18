@@ -1,26 +1,30 @@
 /**
- * CREDENTIALS CONFIGURATION
+ * CREDENTIALS & API CONFIGURATION
  * 
- * Frontend Login Credentials:
- * - Allowed usernames: java, mule (case insensitive)
- * - Password: Abbcchat
+ * All sensitive data and configuration should be provided via environment variables.
  * 
- * Backend API Credentials (sent in request headers):
- * - Header password: Spiritas@469
+ * Required Environment Variables:
+ * - NEXT_PUBLIC_FRONTEND_PASSWORD: Frontend login password
+ * - NEXT_PUBLIC_BACKEND_PASSWORD: Backend API password header
+ * - NEXT_PUBLIC_BACKEND_API_URL: Backend API base URL
  * 
- * NOTE: In production, never hardcode credentials. Use environment variables
- * and secure authentication backends instead.
+ * NOTE: NEXT_PUBLIC_* variables are exposed to the browser.
+ * Never put secrets in these - only non-sensitive config.
  */
 
 // Frontend login credentials
 export const VALID_CREDENTIALS = {
   ALLOWED_USERS: ['java', 'mule'], // Case insensitive
-  PASSWORD: 'Abbcchat',
+  PASSWORD: process.env.NEXT_PUBLIC_FRONTEND_PASSWORD || '',
 };
 
-// Backend API header credentials
+// Backend API configuration
 export const BACKEND_CREDENTIALS = {
-  PASSWORD: 'Spiritas@469',
+  PASSWORD: process.env.NEXT_PUBLIC_BACKEND_PASSWORD || '',
+};
+
+export const BACKEND_API = {
+  BASE_URL: process.env.NEXT_PUBLIC_BACKEND_API_URL || 'https://finance-agent-app.onrender.com',
 };
 
 /**

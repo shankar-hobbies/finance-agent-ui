@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Send, LogOut, RotateCcw } from 'lucide-react';
-import { BACKEND_CREDENTIALS } from '@/lib/constants';
+import { BACKEND_CREDENTIALS, BACKEND_API } from '@/lib/constants';
 
 interface ChatProps {
   userName: string;
@@ -48,7 +48,7 @@ export default function Chat({ userName, onLogout }: ChatProps) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://finance-agent-app.onrender.com/api/conversations', {
+      const response = await fetch(`${BACKEND_API.BASE_URL}/api/conversations`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default function Chat({ userName, onLogout }: ChatProps) {
 
   const handleClearChat = async () => {
     try {
-      await fetch('https://finance-agent-app.onrender.com/api/clear_history', {
+      await fetch(`${BACKEND_API.BASE_URL}/api/clear_history`, {
         method: 'DELETE',
         headers: {
           'user-name': userName.toLowerCase(),
@@ -100,7 +100,7 @@ export default function Chat({ userName, onLogout }: ChatProps) {
 
   const handleLogout = async () => {
     try {
-      await fetch('https://finance-agent-app.onrender.com/api/clear_history', {
+      await fetch(`${BACKEND_API.BASE_URL}/api/clear_history`, {
         method: 'DELETE',
         headers: {
           'user-name': userName.toLowerCase(),
