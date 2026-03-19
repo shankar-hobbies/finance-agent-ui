@@ -42,3 +42,13 @@ export function validateCredentials(username: string, password: string): boolean
 
   return isUserValid && isPasswordValid;
 }
+
+/**
+ * Wakes up the backend server on Render free tier.
+ * Fire-and-forget — we don't care about the response.
+ */
+export function warmUpBackend(): void {
+  fetch(BACKEND_API.BASE_URL).catch(() => {
+    // Silently ignore errors — this is just a warm-up ping.
+  });
+}
